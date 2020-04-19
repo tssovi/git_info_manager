@@ -54,7 +54,7 @@ sed -i -- "s/db_password/$db_pass/g" git_manager/env.py
 
 echo Please Provide Your Ngrok URL:
 read ngrok_url
-sed -i -- "s/ngrok_url/$ngrok_url/g" git_manager/env.py
+sed -i --  "s,your_ngrok_url,$ngrok_url,g" git_manager/env.py
 
 # Install required packages
 pip install -r requirements.txt
@@ -64,9 +64,6 @@ python manage.py makemigrations
 
 # Migrate database
 python manage.py migrate
-
-# Run python shell to seed wiki data
-python manage.py data-scraper
 
 # Run tests for this project
 python manage.py test
