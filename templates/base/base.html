@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    {% endblock %}
+    {% block title %}
+        <title>Git Manager | A Local Git Repo Info System</title>
+    {% endblock %}
+
+    {% block css %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    {% endblock %}
+</head>
+
+<body>
+    <div class="container">
+        <ul class="nav justify-content-center">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/link-github/">Link Your Github Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/git-profile/">Git Repo List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/activity/">Activity</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+                </li>
+            {% endif %}
+        </ul>
+        <div class="">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+    {% block js %}
+        <!-- Javascript -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    {% endblock %}
+</body>
+
+</html>

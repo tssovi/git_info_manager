@@ -1,0 +1,27 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Activity Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if activities %}
+                {% for activity in activities %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{activity.details}}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <th scope="row"></th>
+                    <td>No Activities Found</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

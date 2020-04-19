@@ -1,0 +1,31 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <div class="alert alert-success text-center font-weight-bold" role="alert">
+        Number of Public Repository = {{ count }}!
+    </div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Repo Name</th>
+                <th scope="col">Web Hook Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for repo in repos %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ repo.name }}</td>
+                    <td>
+                        {% if repo.hooks_set.all %}
+                            Web Hook Created
+                        {%else%}
+                            <a href="/create-hook/{{repo.repo_id}}/">Create Hook</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
